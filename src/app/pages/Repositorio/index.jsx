@@ -1,7 +1,10 @@
-import React from 'react';
+import React from "react";
 
-export default function Repositorio() {
-    return (
-        <h1>Repositorio Page</h1>
-    );
+export default function Repositorio({ match }) {
+  return (
+    <h1 style={{ color: "#fff" }}>
+      Repositorio Page
+      {decodeURIComponent(match.params.repositorio)}
+    </h1>
+  );
 }
