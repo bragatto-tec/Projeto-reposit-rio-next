@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect, use } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { Container, Owner, Loading } from "./styles";
 import api from "../../services/api";
 

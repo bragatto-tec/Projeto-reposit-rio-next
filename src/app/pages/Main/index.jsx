@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useCallback, useEffect, use } from "react";
+import Link from "next/link";
 import { FaGithub, FaPlus, FaSpinner, FaBars, FaTrash } from "react-icons/fa";
 import { Container, Form, SubmmitButton, List, DeleteButton } from "./styles";
-import { Link } from "react-router-dom";
 import api from "../../services/api";
 
 export default function Main() {
@@ -106,7 +106,7 @@ export default function Main() {
               </DeleteButton>
               {repo.name}
             </span>
-            <Link to={`/repositorio/${encodeURIComponent(repo.name)}`}>
+            <Link href={`/repositorio/${encodeURIComponent(repo.name)}`}>
               Detalhes
               <FaBars size={20} />
             </Link>
