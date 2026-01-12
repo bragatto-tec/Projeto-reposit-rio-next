@@ -37,9 +37,13 @@ export default function Main() {
             throw new Error("Você precisa indicar um repositório");
           }
 
+          if (!newRepo.includes("/")) {
+            throw new Error("Use o formato: dono/repositorio (ex: facebook/react)");
+          }
+
           const response = await api.get(`/repos/${newRepo}`);
 
-          const hasRepo = repositorios.find((repo) => repo.name === newRepo);
+          const hasRepo = repositorios.find((repo) => repo.name === response.data.full_name);
           if (hasRepo) {
             throw new Error("Repositório duplicado");
           }
