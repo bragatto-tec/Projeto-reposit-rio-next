@@ -80,7 +80,7 @@ export default function Main() {
       <FaGithub size={25} />
       <h1> Meus Repositórios </h1>
 
-      <Form onSubmit={handleSubmit} error={alert}>
+      <Form onSubmit={handleSubmit} $error={alert}>
         <input
           type="text"
           placeholder="Adicionar Repositórios"
