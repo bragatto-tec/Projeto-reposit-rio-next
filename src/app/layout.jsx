@@ -1,4 +1,6 @@
-import GlobalStyle from "./styles/globals";
+"use client";
+
+import { GlobalStyle } from "./styles/globals";
 
 export const metadata = {
   title: "Meus Repositórios",
