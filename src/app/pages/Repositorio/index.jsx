@@ -1,15 +1,18 @@
+"use client";
 import React, { useState, useEffect, use } from "react";
+import { useParams } from "react-router-dom";
 import { Container, Owner, Loading } from "./styles";
 import api from "../../services/api";
 
-export default function Repositorio({ match }) {
+export default function Repositorio() {
+  const params = useParams();
   const [repositorio, setRepositorio] = useState({});
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function load() {
-      const nomeRepo = decodeURIComponent(match.params.repositorio);
+      const nomeRepo = decodeURIComponent(params.repositorio);
 
       const [repositorioData, issuesData] = await Promise.all([
         api.get(`/repos/${nomeRepo}`),

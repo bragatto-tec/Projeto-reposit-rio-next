@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useCallback, useEffect, use } from "react";
 import { FaGithub, FaPlus, FaSpinner, FaBars, FaTrash } from "react-icons/fa";
 import { Container, Form, SubmmitButton, List, DeleteButton } from "./styles";
@@ -83,7 +85,7 @@ export default function Main() {
           type="text"
           placeholder="Adicionar Repositórios"
           value={newRepo}
-          onChange={handleinputChange}
+          onChange={handleInputChange}
         />
 
         <SubmmitButton loading={loading ? 1 : 0} onClick={handleSubmit}>

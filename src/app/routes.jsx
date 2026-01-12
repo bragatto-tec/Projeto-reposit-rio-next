@@ -1,16 +1,17 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+"use client";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom"; // Switch mudou para Routes
 
-import Main from './pages/Main';
-import Repositorio from './pages/Repositorio';
+import Main from "./pages/Main";
+import Repositorio from "./pages/Repositorio";
 
-export default function Routes() {
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route path="/" exact component={Main} />
-                <Route path="/repositorio/:repositorio" component={Repositorio} />
-            </Switch>
-        </BrowserRouter>
-    );
+export default function AppRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/repositorio/:repositorio" element={<Repositorio />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
