@@ -1,6 +1,4 @@
-"use client";
-
-import { GlobalStyle } from "./styles/globals";
+import ClientLayout from "./client-layout";
 
 export const metadata = {
   title: "Meus Repositórios",
@@ -11,8 +9,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body>
-        <GlobalStyle />
-        {children}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
