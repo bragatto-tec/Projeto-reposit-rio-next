@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { Container, Owner, Loading } from "./styles";
+import { Container, Owner, Loading, BackButton } from "./styles";
+import { FaArrowLeft } from "react-icons/fa";
 import api from "../../services/api";
 
 export default function Repositorio() {
@@ -45,6 +46,9 @@ export default function Repositorio() {
   }
   return (
     <Container>
+      <BackButton to="/">
+        <FaArrowLeft color="#000" size={30} />
+      </BackButton>
       <Owner>
         <img src={repositorio.owner.avatar_url} alt={repositorio.owner.login} />
         <h1>{repositorio.name}</h1>
