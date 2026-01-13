@@ -7,6 +7,7 @@ import {
   BackButton,
   IssuesList,
   PageActions,
+  FilterList,
 } from "./styles";
 import { FaArrowLeft } from "react-icons/fa";
 import api from "../../services/api";
@@ -16,8 +17,13 @@ export default function Repositorio({ params }) {
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState([
+    { state: "all", label: "Todas", active: true },
+    { state: "open", label: "Abertas", active: false },
+    { state: "closed", label: "Fechadas", active: false },
+  ]);
+  const [filterIndex, setFilterIndex] = useState(0);
 
-  // Memoizar o nome do repo
   const nomeRepo = useMemo(() => {
     if (!params || !params.repositorio) return null;
     return decodeURIComponent(params.repositorio);
@@ -32,7 +38,7 @@ export default function Repositorio({ params }) {
           api.get(`/repos/${nomeRepo}`),
           api.get(`/repos/${nomeRepo}/issues`, {
             params: {
-              state: "open",
+              state: filters.find((f) => f.active).state,
               per_page: 5,
               page,
             },
@@ -53,6 +59,26 @@ export default function Repositorio({ params }) {
     setPage(action === "back" ? page - 1 : page + 1);
   }
 
+  function handleFilter(index) {
+    setFilterIndex(index);
+  }
+  useEffect(() => {
+    async function loadIssues() {
+      if (!nomeRepo) return;
+
+      const response = await api.get(`/repos/${nomeRepo}/issues`, {
+        params: {
+          state: filters[filterIndex].state,
+          per_page: 5,
+          page,
+        },
+      });
+
+      setIssues(response.data);
+    }
+    loadIssues();
+  }, [filterIndex, nomeRepo, page, filters]);
+
   if (loading) {
     return (
       <Loading>
@@ -70,6 +96,21 @@ export default function Repositorio({ params }) {
         <h1>{repositorio.name}</h1>
         <p>{repositorio.description}</p>
       </Owner>
+
+      <FilterList active={filterIndex}>
+        {filters.map((filter, index) => (
+          <button
+            key={filter.label}
+            type="button"
+            onClick={() => {
+              handleFilter(index);
+              setPage(1);
+            }}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </FilterList>
 
       <IssuesList>
         {issues.map((issue) => (
