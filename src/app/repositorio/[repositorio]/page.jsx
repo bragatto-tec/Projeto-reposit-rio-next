@@ -1,5 +1,8 @@
+"use client";
+import { useParams } from "next/navigation";
 import Repositorio from "../../pages/Repositorio";
 
 export default function RepositorioPage() {
-  return <Repositorio />;
+  const params = useParams();
+  return <Repositorio params={params} />;
 }
