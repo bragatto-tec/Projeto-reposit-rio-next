@@ -1,6 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Container,
   Owner,
@@ -13,15 +12,20 @@ import { FaArrowLeft } from "react-icons/fa";
 import api from "../../services/api";
 
 export default function Repositorio({ params }) {
-  const params = useParams();
   const [repositorio, setRepositorio] = useState({});
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
+  // Memoizar o nome do repo
+  const nomeRepo = useMemo(() => {
+    if (!params || !params.repositorio) return null;
+    return decodeURIComponent(params.repositorio);
+  }, [params]);
+
   useEffect(() => {
     async function load() {
-      const nomeRepo = decodeURIComponent(params.repositorio);
+      if (!nomeRepo) return;
 
       try {
         const [repositorioData, issuesData] = await Promise.all([
@@ -30,6 +34,7 @@ export default function Repositorio({ params }) {
             params: {
               state: "open",
               per_page: 5,
+              page,
             },
           }),
         ]);
@@ -41,26 +46,8 @@ export default function Repositorio({ params }) {
         setLoading(false);
       }
     }
-
     load();
-  }, [params.repositorio]);
-
-  useEffect(() => {
-    async function loadIssues() {
-      const nomeRepo = decodeURIComponent(params.repositorio);
-
-      const response = await api.get(`/repos/${nomeRepo}/issues`, {
-        params: {
-          state: "open",
-          per_page: 5,
-          page,
-        },
-      });
-
-      setIssues(response.data);
-    }
-    loadIssues();
-  }, [page, params.repositorio]);
+  }, [nomeRepo, page]);
 
   function handlePage(action) {
     setPage(action === "back" ? page - 1 : page + 1);
@@ -75,7 +62,7 @@ export default function Repositorio({ params }) {
   }
   return (
     <Container>
-      <BackButton to="/">
+      <BackButton href="/">
         <FaArrowLeft color="#000" size={30} />
       </BackButton>
       <Owner>
@@ -103,7 +90,11 @@ export default function Repositorio({ params }) {
       </IssuesList>
 
       <PageActions>
-        <button type="button" onClick={() => handlePage("back")}>
+        <button
+          type="button"
+          onClick={() => handlePage("back")}
+          disabled={page < 2}
+        >
           Voltar
         </button>
 

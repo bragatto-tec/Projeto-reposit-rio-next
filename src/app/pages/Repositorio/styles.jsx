@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+
+const StyledLink = ({ href, ...props }) => <Link href={href} {...props} />;
 
 export const Loading = styled.div`
   color: #fff;
@@ -43,7 +45,7 @@ export const Owner = styled.header`
   }
 `;
 
-export const BackButton = styled(Link)`
+export const BackButton = styled(StyledLink)`
   border: 0;
   outline: 0;
   background: transparent;
@@ -120,5 +122,10 @@ export const PageActions = styled.div`
     color: #fff;
     padding: 5px 10px;
     border-radius: 4px;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
   }
 `;

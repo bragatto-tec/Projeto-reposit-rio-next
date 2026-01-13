@@ -1,8 +1,6 @@
-"use client";
-import { useParams } from "next/navigation";
 import Repositorio from "../../pages/Repositorio";
 
-export default function RepositorioPage() {
-  const params = useParams();
+export default async function RepositorioPage(props) {
+  const params = await props.params;
   return <Repositorio params={params} />;
 }
