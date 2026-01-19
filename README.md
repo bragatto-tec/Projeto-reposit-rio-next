@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📌 Sobre este Repositório
+Este projeto é uma aplicação web desenvolvida para interagir com a API pública do GitHub. O usuário pode adicionar repositórios favoritos, salvá-los localmente e visualizar detalhes específicos, como issues abertas e fechadas.
 
-## Getting Started
+O projeto foi construído utilizando a arquitetura moderna do Next.js (App Router), integrando Styled Components com suporte a Server-Side Rendering (SSR) através de um registry customizado.
 
-First, run the development server:
+🎯 Objetivo
+O objetivo deste repositório é:
 
-```bash
+📚 Praticar e aplicar conceitos do Next.js 16 e React 19.
+
+💅 Demonstrar a integração do Styled Components com o App Router do Next.js.
+
+🔄 Consumir dados externos utilizando Axios e a API do GitHub.
+
+💾 Gerenciar estado local e persistência de dados com localStorage.
+
+🚀 Implementar funcionalidades como paginação e filtragem de issues.
+
+📂 Estrutura
+A aplicação utiliza o App Router do Next.js.
+
+src/app/page.jsx: Rota principal que carrega a página Main.
+
+src/app/pages/Main/: Página inicial onde é possível adicionar e listar repositórios.
+
+src/app/pages/Repositorio/: Página dinâmica (/repositorio/[repositorio]) que exibe detalhes e issues.
+
+src/app/services/api.jsx: Configuração do Axios para comunicação com a API do GitHub.
+
+src/app/registry.jsx: Configuração necessária para o Styled Components funcionar corretamente no Next.js (SSR).
+
+src/app/styles/globals.jsx: Estilos globais da aplicação.
+
+🛠️ Tecnologias
+Framework: Next.js 16.1.1
+
+Biblioteca UI: React 19.2.3
+
+Estilização: Styled Components
+
+Requisições HTTP: Axios
+
+Ícones: React Icons (Font Awesome)
+
+Ferramentas: Babel Plugin React Compiler
+
+🚀 Como Executar
+Clone o repositório:
+
+Bash
+
+git clone https://github.com/bragatto-tec/projeto-reposit-rio-next.git
+Instale as dependências:
+
+Bash
+
+npm install
+# ou
+yarn install
+Execute o servidor de desenvolvimento:
+
+Bash
+
 npm run dev
-# or
+# ou
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Acesse http://localhost:3000 no seu navegador.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Desenvolvedor: Guilherme Miyamoto Bragatto
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+📧 Email: guimbragatto@gmail.com
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+💼 LinkedIn: Meu perfil
 
-## Learn More
+🐙 GitHub: Meu usuário
 
-To learn more about Next.js, take a look at the following resources:
+<div align="center">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Desenvolvido com ⚛️ e 💻
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</div>
